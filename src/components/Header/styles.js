@@ -1,11 +1,16 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+    
+  safeArea: {
+    flex: 1,
+  },
+  
     container: {
-      display: 'flex',
       backgroundColor: '#004A86',
-      height:100,
-      padding: 20
+      height: 100,
+      paddingHorizontal: 20,
+      paddingVertical: 16
     },
 
     headerFlex: {
