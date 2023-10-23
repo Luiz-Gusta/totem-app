@@ -6,12 +6,5 @@ export default StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
-    },
-
-    aaa: {
-      flex: 1,
-      backgroundColor: '#AAff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
+    }
   });
