@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { View, Image, Text } from "react-native";
+import { View, Image, Text, TouchableOpacity } from "react-native";
 import { useState, useEffect } from "react";
 
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -11,21 +11,30 @@ import styles from "./styles";
 export default function Header() {
 
   const [date, setDate] = useState(dayjs())
+  const [weather, setWeather] = useState()
+  
+
+   const getWeather= async() => {
+    try {
+      const resp = await fetch('https://api.weatherapi.com/v1/current.json?key=be6c0f48ed444370a7c225024232310&q=caraguatatuba')
+      const current = await resp.json()
+      const currentWeather = current.current.temp_c
+      console.log(currentWeather)
+      setWeather(currentWeather)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
 
   useEffect(() => {
     setInterval(() => {
       setDate(dayjs());
     }, 1000* 1)
+
+    getWeather()
   }, [])
-  
-  async () => {
-    try {
-      const resp = await fetch('https://api.hgbrasil.com/weather?key=SUA-CHAVE&city_name=Caraguatatuba,SP')
-      
-    } catch (error) {
-      
-    }
-  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -41,12 +50,13 @@ export default function Header() {
               source={require("../../../assets/weather.png")}
             />
             <View style={styles.headerContent}>
-              <Text style={styles.label}>22ºC</Text>
+              <Text style={styles.label}>{weather}</Text>
             </View>
+
           </View>
         </View>
       </View>
-      
+
     </SafeAreaView>
   );
 }
