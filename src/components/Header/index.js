@@ -26,8 +26,6 @@ export default function Header() {
     }
   }
 
-
-
   useEffect(() => {
     setInterval(() => {
       setDate(dayjs());
@@ -50,13 +48,12 @@ export default function Header() {
               source={require("../../../assets/weather.png")}
             />
             <View style={styles.headerContent}>
-              <Text style={styles.label}>{weather}</Text>
+              <Text style={styles.label}>{Math.trunc(weather)}ºC</Text>
             </View>
 
           </View>
         </View>
       </View>
-
     </SafeAreaView>
   );
 }
