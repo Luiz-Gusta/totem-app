@@ -35,7 +35,7 @@ export default function Header() {
   }, [])
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView>
       <View style={styles.container}>
         <View style={styles.headerFlex}>
           <View style={styles.headerContent}>
