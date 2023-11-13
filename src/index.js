@@ -3,6 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { Text, View } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import Button from "./components/Button";
+import BusLines from "./components/BusLines";
 import { useFonts } from "expo-font";
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -51,10 +52,8 @@ export default function App() {
           </View>
 
           <View style={styles.rightContainer}>
-            <Text>SISTEMA DIGITAL DE PROTEÇÃO AO CIDADÃO</Text>
-            <View style={styles.buttons}>
-              <Button value={'fazer ligação'} onPress={() => console.log('aaa')} />
-            </View>
+          <BusLines value={'pedro'} onPress={() => console.log('aaa')} />
+          <View style={{backgroundColor: 'red', flex: 1}}></View>
           </View>
         </View>
       </LinearGradient>
