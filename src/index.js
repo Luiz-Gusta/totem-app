@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Text, View } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
@@ -34,6 +35,7 @@ export default function App() {
         style={styles.container}
         colors={['#ffffff', '#AEF0FF']}
         end={LinearGradientPoint = { x: 0.0, y: 1.0 }}
+        onLayout={onLayoutRootView}
       >
         <View style={styles.splitView}>
           
