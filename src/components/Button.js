@@ -1,10 +1,11 @@
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { Theme } from './Theme'
 
-export default function Button({value, ...rest} ) {
+export default function Button({value, btType, btColor, textColor='white', ...rest} ) {
   return (
-    <TouchableOpacity style={styles.button} {...rest}>
-        <Text style={styles.text}>
+    <TouchableOpacity style={styles.button(btType, btColor)} {...rest}>
+        <Text style={styles.text(textColor)}>
             {value}
         </Text>
     </TouchableOpacity>
@@ -13,21 +14,21 @@ export default function Button({value, ...rest} ) {
 
 
 const styles = StyleSheet.create({
-    button:{
-        height: 60,
-        width: 294,
+    button: (btType, btColor) => ({
+        height: Theme.btHeight[btType],
+        width: Theme.btWidth[btType],
         padding: 10,
         borderRadius: 5,
-        backgroundColor: '#004A86',
+        backgroundColor: Theme.colors[btColor],
         alignItems: 'center',
         justifyContent: 'center'
-    },
+    }),
 
-    text:{
+    text: (textColor) =>({
         fontSize: 24,
         lineHeight: 30,
         textTransform: 'uppercase',
         fontWeight: 'bold',
-        color: 'white',
-    }
+        color: Theme.colors[textColor],
+    })
 })
