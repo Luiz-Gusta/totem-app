@@ -1,7 +1,7 @@
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-export default function Button({value, ...rest} ) {
+export default function ButtonSmall({value, ...rest} ) {
   return (
     <TouchableOpacity style={styles.button} {...rest}>
         <Text style={styles.text}>
@@ -14,8 +14,8 @@ export default function Button({value, ...rest} ) {
 
 const styles = StyleSheet.create({
     button:{
-        height: 60,
-        width: 294,
+        height: 78,
+        width: 180,
         padding: 10,
         borderRadius: 5,
         backgroundColor: '#004A86',
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     },
 
     text:{
-        fontSize: 24,
+        fontSize: 18,
         lineHeight: 30,
         textTransform: 'uppercase',
         fontWeight: 'bold',
