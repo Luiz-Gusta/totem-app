@@ -78,6 +78,7 @@ export default StyleSheet.create(
     height: 500,
     width: 528,
     borderRadius: 20,
+    padding: 20
   },
 
   modalButtons:{
@@ -86,6 +87,10 @@ export default StyleSheet.create(
     alignContent: 'space-around',
     justifyContent: 'space-between',
     flexWrap: 'wrap'
+  },
+
+  bottomBottom:{
+    alignItems: 'flex-end'
   }
 
   });

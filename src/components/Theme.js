@@ -6,7 +6,7 @@ export const Theme = {
 
     btWidth: {
         large: 294,
-        small: 180,
+        small: '48%',
     },
     colors: {
         white: '#FFFFFF',
