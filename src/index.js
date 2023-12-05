@@ -27,6 +27,7 @@ const requestSupport = () => {
       })
   })
   console.log('ok2')
+  
 }
 
 export default function App() {
