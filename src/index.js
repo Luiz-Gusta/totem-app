@@ -12,6 +12,23 @@ import Header from "./components/Header";
 
 SplashScreen.preventAutoHideAsync();
 
+const requestSupport = () => {
+  console.log('ok')
+  fetch('//', {
+      cache: 'no-store',
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          code: '311',
+          latitude: '-23.717299',
+          longitude: '-45.440373'
+      })
+  })
+  console.log('ok2')
+}
+
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -30,75 +47,7 @@ export default function App() {
 
   return (
     <>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(false);
-        }}
-      >
-        <View style={styles.modalBackground}>
-          <View style={styles.modalContainer}>
-            <Text
-              style={{
-                fontSize: 40,
-                fontFamily: "BebasNeue",
-                color: "#002756",
-              }}
-            >
-              Para qual serviço deseja ligar?
-            </Text>
-            <View style={styles.modalButtons}>
-              <Button
-                value={"Policia Militar"}
-                btType={"small"}
-                btColor={"blue"}
-                onPress={() => console.log("aaa")}
-              />
-              <Button
-                value={"Samu"}
-                btType={"small"}
-                btColor={"blue"}
-                onPress={() => console.log("aaa")}
-              />
-              <Button
-                value={"Bombeiros"}
-                btType={"small"}
-                btColor={"blue"}
-                onPress={() => console.log("aaa")}
-              />
-              <Button
-                value={"Central de Atendimento à mulher"}
-                btType={"small"}
-                btColor={"blue"}
-                onPress={() => console.log("aaa")}
-              />
-              <Button
-                value={"Defesa Cívil"}
-                theme="btGrey"
-                onPress={() => console.log("aaa")}
-              />
-              <Button
-                value={"Denunciar violações de direitos humanos"}
-                btType={"small"}
-                btColor={"blue"}
-                onPress={() => console.log("aaa")}
-              />
-            </View>
-            <View style={styles.bottomBottom}>
-              <Button
-                value={"Cancelar"}
-                btType={"small"}
-                btColor={"lightGrey"}
-                textColor="grey"
-                onPress={() => setModalVisible(false)}
-              />
-            </View>
-          </View>
-        </View>
-      </Modal>
-
+      
       <Header />
       <LinearGradient
         style={styles.container}
@@ -123,21 +72,14 @@ export default function App() {
                   value={"Acompanhamento"}
                   btType="large"
                   btColor="blue"
-                  onPress={() => console.log("aaa")}
-                />
-                <Button
-                  value={"Emergência"}
-                  btType="large"
-                  btColor="lightGrey"
-                  textColor={"grey"}
-                  onPress={() => setModalVisible(true)}
+                  onPress={() => requestSupport()}
                 />
               </View>
             </View>
           </View>
 
           <View style={styles.rightContainer}>
-            <BusLines value={""} onPress={() => console.log("aaa")} />
+            <BusLines value={""} />
             <View
               style={{
                 padding: 20,
