@@ -1,5 +1,5 @@
 export const requestSupport =() => {
-    return fetch('https://sentinela-urbana-34dbf9a6b08c.herokuapp.com', {
+    return fetch('//', {
         cache: 'no-store',
         method: 'POST',
         headers: {
