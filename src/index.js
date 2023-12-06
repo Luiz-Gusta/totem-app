@@ -14,7 +14,7 @@ SplashScreen.preventAutoHideAsync();
 
 const requestSupport = () => {
   console.log('ok')
-  fetch('//', {
+  fetch('https://sentinela-urbana-4905a21fd799.herokuapp.com/', {
       cache: 'no-store',
       method: 'POST',
       headers: {
@@ -27,11 +27,12 @@ const requestSupport = () => {
       })
   })
   console.log('ok2')
-  
+
+  return(true)
 }
 
 export default function App() {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [isSupportActive, setIsSupportActive] = useState(false);
 
   const [fontsLoaded, fontError] = useFonts({
     BebasNeue: require("../assets/fonts/BebasNeue.ttf"),
@@ -52,8 +53,8 @@ export default function App() {
       <Header />
       <LinearGradient
         style={styles.container}
-        colors={["#ffffff", "#AEF0FF"]}
-        end={(LinearGradientPoint = { x: 0.0, y: 1.0 })}
+        colors={isSupportActive? ["#FFFFFF", "#FFE27B"] : ["#ffffff", "#AEF0FF"]}
+        end={(LinearGradientPoint = { x: isSupportActive? 0.5 : 0.0, y: 1.0 })}
         onLayout={onLayoutRootView}
       >
         <View style={styles.splitView}>
@@ -66,14 +67,14 @@ export default function App() {
                   color: "#002756",
                 }}
               >
-                SISTEMA DIGITAL DE PROTEÇÃO AO CIDADÃO
+              {isSupportActive? 'O acompanhamento em tempo real está ativo.' : 'SISTEMA DIGITAL DE PROTEÇÃO AO CIDADÃO'}
               </Text>
               <View style={styles.buttons}>
                 <Button
                   value={"Acompanhamento"}
                   btType="large"
                   btColor="blue"
-                  onPress={() => requestSupport()}
+                  onPress={() => setIsSupportActive(requestSupport())}
                 />
               </View>
             </View>
