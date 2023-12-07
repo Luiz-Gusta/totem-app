@@ -12,13 +12,13 @@ import Header from "./components/Header";
 
 SplashScreen.preventAutoHideAsync();
 
-const requestSupport = () => {
+const requestSupport = async () => {
   console.log('ok')
-  fetch('https://sentinela-urbana-4905a21fd799.herokuapp.com/', {
-      cache: 'no-store',
+const response = await fetch('/assistances', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
+          'token': ''
       },
       body: JSON.stringify({
           code: '311',
@@ -26,9 +26,10 @@ const requestSupport = () => {
           longitude: '-45.440373'
       })
   })
-  console.log('ok2')
 
-  return(true)
+  const data = await response
+  console.log(data.ok)
+
 }
 
 export default function App() {
