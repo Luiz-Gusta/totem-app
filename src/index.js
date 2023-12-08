@@ -14,21 +14,16 @@ SplashScreen.preventAutoHideAsync();
 
 const requestSupport = async () => {
   console.log('ok')
-const response = await fetch('/assistances', {
+const response = await fetch('', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
-          'token': ''
+          'Authorization': ''
       },
-      body: JSON.stringify({
-          code: '311',
-          latitude: '-23.717299',
-          longitude: '-45.440373'
-      })
   })
 
   const data = await response
-  console.log(data.ok)
+  console.log(data)
 
 }
 
