@@ -3,7 +3,7 @@ import React from 'react'
 
 const DATA = [
     {
-        data: ['108 Centro direto', '107 Centro Via Rodoviaria',  '109 Centro Via Rodoviaria / ame', '117 Centro via Praias / pro-mulher']
+        data: ['105 Pegoreli Tarumãs Via Perequê', '107 Centro Via Rodoviaria', '108 Centro direto', '109 Centro Via Rodoviaria / ame', '117 Centro via Praias / pro-mulher']
     },
 ]
 
@@ -14,7 +14,7 @@ export default function BusLines({ value, ...rest }) {
         <View style={styles.tableBody}>
             <View style={styles.tableHeader}>
                 <Text style={styles.text}>
-                    Próximas linhas
+                    Rotas
                 </Text>
             </View>
 

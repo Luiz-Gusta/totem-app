@@ -3,6 +3,12 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create(
   
   {
+
+    logo:{
+      height: '80%',
+      width: '80%'
+    },
+
     container: {
       flex: 1,
       backgroundColor: '#fff',
@@ -23,6 +29,7 @@ export default StyleSheet.create(
       flex: 1,
       flexDirection: 'row',
       padding: 50,
+      gap: 12
     },
 
     leftContainer:{
@@ -64,29 +71,6 @@ export default StyleSheet.create(
       fontSize: 24,
       textAlign: 'center',
       color: "#707070"
-  },
-
-  modalBackground:{
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.2)'
-  },
-
-  modalContainer:{
-    backgroundColor: 'white',
-    height: 500,
-    width: 528,
-    borderRadius: 20,
-    padding: 20
-  },
-
-  modalButtons:{
-    flex: 3,
-    flexDirection: 'row',
-    alignContent: 'space-around',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap'
   },
 
   bottomBottom:{

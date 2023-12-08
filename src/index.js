@@ -6,26 +6,13 @@ import Button from "./components/Button";
 import BusLines from "./components/BusLines";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
+import {API_URL, API_TOKEN} from '@env'
 
 import styles from "./styles";
 import Header from "./components/Header";
 
 SplashScreen.preventAutoHideAsync();
 
-const requestSupport = async () => {
-  console.log('ok')
-const response = await fetch('', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-          'Authorization': ''
-      },
-  })
-
-  const data = await response
-  console.log(data)
-
-}
 
 export default function App() {
   const [isSupportActive, setIsSupportActive] = useState(false);
@@ -43,6 +30,19 @@ export default function App() {
     return null;
   }
 
+  const requestSupport = async () => {
+    const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': API_TOKEN
+          },
+      })
+      console.log(response.ok)
+      setIsSupportActive(response.ok)
+    
+    }
+    
   return (
     <>
       
@@ -70,7 +70,7 @@ export default function App() {
                   value={"Acompanhamento"}
                   btType="large"
                   btColor="blue"
-                  onPress={() => setIsSupportActive(requestSupport())}
+                  onPress={() => requestSupport()}
                 />
               </View>
             </View>
