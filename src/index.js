@@ -44,8 +44,9 @@ export default function App() {
         "Content-Type": "application/json",
         Authorization: `${token}`,
       },
-    }).then((response) => response.json())
+    })//.then((response) => response.json())
       //.then((json) => console.log(json))
+
     setIsSupportActive(response.ok);
   };
 
@@ -57,7 +58,7 @@ export default function App() {
       },
       body: JSON.stringify({
         user: {
-          email: "user@email.com",
+          email: "spot@email.com",
           password: "123456",
         },
       }),
