@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Text, View, Image, Modal } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
@@ -6,13 +6,12 @@ import Button from "./components/Button";
 import BusLines from "./components/BusLines";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import {API_URL, API_TOKEN} from '@env'
+import { API_URL, API_TOKEN } from "@env";
 
 import styles from "./styles";
 import Header from "./components/Header";
 
 SplashScreen.preventAutoHideAsync();
-
 
 export default function App() {
   const [isSupportActive, setIsSupportActive] = useState(false);
@@ -20,6 +19,13 @@ export default function App() {
   const [fontsLoaded, fontError] = useFonts({
     BebasNeue: require("../assets/fonts/BebasNeue.ttf"),
   });
+
+  const [token, setToken] = useState('')
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded || fontError) {
       await SplashScreen.hideAsync();
@@ -31,26 +37,44 @@ export default function App() {
   }
 
   const requestSupport = async () => {
-    const response = await fetch(API_URL, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-              'Authorization': API_TOKEN
-          },
-      })
-      console.log(response.ok)
-      setIsSupportActive(response.ok)
-    
-    }
-    
+    //console.log(token)
+    const response = await fetch(`${API_URL}/api/v1/assistances/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+    }).then((response) => response.json())
+      //.then((json) => console.log(json))
+    setIsSupportActive(response.ok);
+  };
+
+  async function fetchData() {
+    const response = await fetch(`${API_URL}/api/v1/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          email: "user@email.com",
+          password: "123456",
+        },
+      }),
+    }).then((response) => response.json())
+      .then((json) => setToken(json.token))
+  
+  }
+
   return (
     <>
-      
       <Header />
       <LinearGradient
         style={styles.container}
-        colors={isSupportActive? ["#FFFFFF", "#FFE27B"] : ["#ffffff", "#AEF0FF"]}
-        end={(LinearGradientPoint = { x: isSupportActive? 0.5 : 0.0, y: 1.0 })}
+        colors={
+          isSupportActive ? ["#FFFFFF", "#FFE27B"] : ["#ffffff", "#AEF0FF"]
+        }
+        end={(LinearGradientPoint = { x: isSupportActive ? 0.5 : 0.0, y: 1.0 })}
         onLayout={onLayoutRootView}
       >
         <View style={styles.splitView}>
@@ -63,7 +87,9 @@ export default function App() {
                   color: "#002756",
                 }}
               >
-              {isSupportActive? 'O acompanhamento em tempo real está ativo.' : 'SISTEMA DIGITAL DE PROTEÇÃO AO CIDADÃO'}
+                {isSupportActive
+                  ? "O acompanhamento em tempo real está ativo."
+                  : "SISTEMA DIGITAL DE PROTEÇÃO AO CIDADÃO"}
               </Text>
               <View style={styles.buttons}>
                 <Button
