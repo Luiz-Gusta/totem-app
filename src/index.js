@@ -6,7 +6,7 @@ import Button from "./components/Button";
 import BusLines from "./components/BusLines";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { API_URL, API_TOKEN } from "@env";
+import { API_URL } from "@env";
 
 import styles from "./styles";
 import Header from "./components/Header";

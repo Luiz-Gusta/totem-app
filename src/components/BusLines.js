@@ -1,7 +1,7 @@
 import { StyleSheet, View, Text, SectionList } from 'react-native'
 import React from 'react'
 
-//Aqui se recebem as rotas que passam no ponto de ônibus que ficará o Totem
+//Aqui se recebem as rotas que passam no ponto de ônibus que ficará o Totem.
 const DATA = [
     {
         data: ['105 Pegoreli Tarumãs Via Perequê', '107 Centro Via Rodoviaria', '108 Centro direto', '109 Centro Via Rodoviaria / ame', '117 Centro via Praias / pro-mulher']
