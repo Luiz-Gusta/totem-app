@@ -44,13 +44,13 @@ export default function App() {
         "Content-Type": "application/json",
         Authorization: `${token}`,
       },
-    })//.then((response) => response.json())
-      //.then((json) => console.log(json))
-
+    })
+    console.log(response.ok)
     setIsSupportActive(response.ok);
   };
 
   async function fetchData() {
+    try {
     const response = await fetch(`${API_URL}/api/v1/login`, {
       method: "POST",
       headers: {
@@ -62,9 +62,13 @@ export default function App() {
           password: "123456",
         },
       }),
-    }).then((response) => response.json())
-      .then((json) => setToken(json.token))
-  
+    }) .then((response) => response.json())
+       .then((json) => setToken(json.token))
+
+  } catch (error) {
+    console.error("Erro ao obter token:", error);
+    
+  }
   }
 
   return (
