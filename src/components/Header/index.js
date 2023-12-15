@@ -16,7 +16,7 @@ export default function Header() {
 
    const getWeather= async() => {
     try {
-      const resp = await fetch('https://api.weatherapi.com/v1/current.json?key=be6c0f48ed444370a7c225024232310&q=caraguatatuba')
+      const resp = await fetch('https://api.weatherapi.com/v1/current.json?key=SuaChaveAqui&q=SuaCidade')
       const current = await resp.json()
       const currentWeather = current.current.temp_c
       console.log(currentWeather)
