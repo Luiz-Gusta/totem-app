@@ -59,7 +59,7 @@
 
   Para configurá-lo de acordo com sua identidade visual, basta criar objetos quais os parâmetros são os mesmos do seu objeto Stylesheet do React Native.
 
-  1. Objetos em Theme:
+1. **Objetos em Theme:**
   ```
   export const Theme = {
     btHeight: {
@@ -80,15 +80,85 @@
 }
   ```
 
-  2. Implementação no componente:
+2. **Implementação no componente:**
 
-  2.1. Importe seu componente Theme:
+Importe seu componente Theme:
     
   ```
     import { Theme } from './Theme'
   ```
+
+Chame as propriedades de Theme para seu objeto Stylesheet:
+    
+  ```
+    button: (btType, btColor) => ({
+        height: Theme.btHeight[btType],
+        width: Theme.btWidth[btType],
+        // resto do código
+    }),
+  ```
     
   ### <a name="requests"></a>Requests
+
+  As requests são as funções que possibilita a conexão da sua aplicação com o back-end. Você encontrará no arquivo index.js duas funções de assíncronas de fetch, sendo essas **fetchData** e **requestSupport**, sendo respectivamente, a função de autenticação e de pedido de moritoramento.
+
+  #### Função de autenticação:
+
+  ```
+    try {
+    const response = await fetch(`${API_URL}/RotaDoSeuRequestHTTP`, {
+      method: "POST",
+      headers: {
+        // Headers de sua aplicação
+      },
+      body: JSON.stringify({
+       // Body de sua aplicação
+      }),
+    }) .then((response) => response.json())
+       .then((json) => setToken(json.token))
+
+  } catch (error) {
+    // seu tratamento de erros
+  }
+  ```
+  Note que variável API_URL está sendo chamada no mesmo arquivo:
+  ```
+    import { API_URL } from "@env";
+  ```
+
+  Essa função retornará o Token nescessário para o o pedido de moritoramento.
+
+  #### Função de pedido de moritoramento:
+
+  ```
+  const requestSupport = async () => {
+    const response = await fetch(`${API_URL}/RotaDoSeuRequestHTTP`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+    })
+    setIsSupportActive(response.ok)
+  }
+  ```
+
+  Essa função enviará um request para o sistema utilizado pela central de moritoramento, retornando a confirmação de que o pedido foi enviado. O retorno positivo desse request altera o valor da flag IsSupportActive, mudando o visual do aplicação e informando ao usuário de que o monitoramento está ativado.
+
   ### <a name="bus-lines"></a>Rotas
 
+  O arquivo de Rotas atualmente consta com uma implementação simplificada, pois é considerado que cada Totem será configurado para a região que ele será implementado. Sendo assim, basta preencher o Array de DATA com os títulos das rotas de ônibus que passam por determinado ponto:
+
+  ```
+  const DATA = [
+    {
+        data: ['105 Pegoreli Tarumãs Via Perequê', '107 Centro Via Rodoviaria', '108 Centro direto', '109 Centro Via Rodoviaria / ame', '117 Centro via Praias / pro-mulher']
+    },
+]
+  ```
+
   ## <a name="recommendations"></a>Recomendações
+
+  - A aplicação foi baseada desenvolvida com uso de emuladores de Tablets android do Android studio, seguindo as proporções do mesmo. Sendo assim recomendo o uso da aplicação para testes.
+  - A chave da API de WeatherAPI pode ser passada como uma constante através do arquivo .env
+  - As cores e estilos da aplicação devem seguir a identidade visual da cidade, neste caso, o de Caraguatatuba. Disponível em: [MANUAL DE MARCA - CARAGUATATUBA](https://www.caraguatatuba.sp.gov.br/pmc/wp-content/uploads/2021/07/Manual_de_Marca_CARAGUA_2021_1.pdf)
